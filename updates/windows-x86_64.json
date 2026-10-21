@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "product": "luke-pdf-editor",
+  "name": "鲁科 PDF 编辑器",
+  "platform": "windows-x86_64",
+  "channel": "stable",
+  "latest": null,
+  "releases_url": "https://github.com/CommonerOfWestWall/luke-pdfcraft/releases",
+  "status": "not_released",
+  "message": "2.0 安装包尚未通过发布验收；没有可安装的稳定版本。"
+}
