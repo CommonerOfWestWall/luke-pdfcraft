@@ -11,7 +11,7 @@
 | 最新正式 Release | https://api.github.com/repos/CommonerOfWestWall/luke-pdfcraft/releases/latest |
 | Windows x64 稳定版索引 | https://raw.githubusercontent.com/CommonerOfWestWall/luke-pdfcraft/main/updates/windows-x86_64.json |
 
-2.0.3 已作为[未签名公开预览版](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.3)提供手动下载，不放入稳定索引。索引 `latest=null`、`releases/latest` 返回 404 是**尚未发布稳定版**的预期状态；公开 Release 列表可以包含预览版。2.0.3 的“帮助 → 检查更新”仅在点击时读取本索引；启动不联网，也不下载或运行安装程序。
+2.0.4 作为[未签名公开预览版](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.4)提供手动下载，旧 2.0.3 保留，不放入稳定索引。索引 `latest=null`、`releases/latest` 返回 404 是**尚未发布稳定版**的预期状态；公开 Release 列表可以包含预览版。2.0.3/2.0.4 的“帮助 → 检查更新”仅在点击时读取本索引；启动不联网，也不下载或运行安装程序。由于客户端只提示稳定版，**软件内不会提示本次预览更新**；普通用户请使用 README 的固定下载页与手动更新步骤。不能仅为显示提示而把未签名候选标为稳定。
 
 ## 索引约定
 

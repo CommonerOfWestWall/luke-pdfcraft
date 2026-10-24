@@ -1,13 +1,13 @@
-# 2.0.3 源码交付
+# 2.0.4 源码交付
 
-[下载冻结的产品源码 ZIP](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.3/Luke-PDF-Editor-2.0.3-source.zip)，并用同一 Release 的 `SHA256SUMS.txt` 校验。逐文件清单另见 `source-manifest.json`，详细导出范围见压缩包内 `SOURCE-SNAPSHOT.md`。
+[下载冻结的产品源码 ZIP](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.4/Luke-PDF-Editor-2.0.4-source.zip)，并用同一 Release 的 `SHA256SUMS.txt` 校验。逐文件清单另见 `source-manifest.json`，详细导出范围见压缩包内 `SOURCE-SNAPSHOT.md`。[旧 2.0.3 快照](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.3)独立保留，不覆盖。
 
 ## 它对应什么
 
 - 上游：[storytold/pdfcraft](https://github.com/storytold/pdfcraft)，基线 `ac89a113915ea890999cf1a141cdfcda1ad06d98`。
-- 产品：鲁科 PDF 编辑器 2.0，构建/安装版本 2.0.3。
+- 产品：鲁科 PDF 编辑器 2.0，构建/安装版本 2.0.4；上游 v0.8 基础加已选安全补丁，不是完整 v0.13。新增 #3946 编码输入保护与 #3948 取整像素预算保护。
 - 二进制来自含未提交改动的工作树，验收后原字节保留；源码 ZIP 是交付时冻结的产品工作树，不是本渠道仓库某次提交的构建产物。
-- 未声称字节级可复现构建。渠道 `v2.0.3` 标签只固定发行说明与索引，不是产品源码提交。GitHub 自动生成的 “Source code” 仅含渠道文件；**编译请取上述显式 source.zip 资产**。
+- 未声称字节级可复现构建。渠道 `v2.0.4` 标签只固定发行说明与索引，不是产品源码提交。GitHub 自动生成的 “Source code” 仅含渠道文件；**编译请取上述显式 source.zip 资产**。
 
 ## 包含与排除
 
