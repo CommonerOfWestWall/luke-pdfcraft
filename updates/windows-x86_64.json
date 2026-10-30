@@ -4,8 +4,20 @@
   "name": "鲁科 PDF 编辑器",
   "platform": "windows-x86_64",
   "channel": "stable",
-  "latest": null,
+  "latest": {
+    "version": "2.0.6",
+    "tag": "v2.0.6",
+    "release_url": "https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.6",
+    "assets": [
+      {
+        "name": "Luke-PDF-Editor-2.0.6-x64.msi",
+        "size": 59187200,
+        "sha256": "2ed8f028c7847e38b8d1ea04b6ca2f392b23ad1508e33e6f3d52e85952e93777",
+        "url": "https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.6/Luke-PDF-Editor-2.0.6-x64.msi"
+      }
+    ]
+  },
   "releases_url": "https://github.com/CommonerOfWestWall/luke-pdfcraft/releases",
-  "status": "not_released",
-  "message": "2.0.6 未签名公开预览版已提供 GitHub 手动下载；新版可显式打开预览下载页，不自动下载安装，目前没有可安装的稳定版本。"
+  "status": "public_preview",
+  "message": "未签名公开预览版，仅供手动下载和安装；不会自动下载或安装。"
 }
