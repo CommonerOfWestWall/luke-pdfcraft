@@ -7,5 +7,5 @@
   "latest": null,
   "releases_url": "https://github.com/CommonerOfWestWall/luke-pdfcraft/releases",
   "status": "not_released",
-  "message": "2.0.4 未签名公开预览版已提供 GitHub 手动下载；软件内暂不提示预览更新，目前没有可安装的稳定版本。"
+  "message": "2.0.6 未签名公开预览版已提供 GitHub 手动下载；新版可显式打开预览下载页，不自动下载安装，目前没有可安装的稳定版本。"
 }

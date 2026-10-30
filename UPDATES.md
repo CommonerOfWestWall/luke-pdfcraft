@@ -11,12 +11,12 @@
 | 最新正式 Release | https://api.github.com/repos/CommonerOfWestWall/luke-pdfcraft/releases/latest |
 | Windows x64 稳定版索引 | https://raw.githubusercontent.com/CommonerOfWestWall/luke-pdfcraft/main/updates/windows-x86_64.json |
 
-2.0.4 作为[未签名公开预览版](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.4)提供手动下载，旧 2.0.3 保留，不放入稳定索引。索引 `latest=null`、`releases/latest` 返回 404 是**尚未发布稳定版**的预期状态；公开 Release 列表可以包含预览版。2.0.3/2.0.4 的“帮助 → 检查更新”仅在点击时读取本索引；启动不联网，也不下载或运行安装程序。由于客户端只提示稳定版，**软件内不会提示本次预览更新**；普通用户请使用 README 的固定下载页与手动更新步骤。不能仅为显示提示而把未签名候选标为稳定。
+2.0.6 作为[未签名公开预览版](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.6)提供手动下载，旧 2.0.3/2.0.4 保留，不放入稳定索引。索引 `latest=null`、`releases/latest` 返回 404 是**尚未发布稳定版**的预期状态；公开 Release 列表可以包含预览版。2.0.3/2.0.4 的“检查更新”把空索引误报为无法检查，必须先手动安装新版；2.0.6 将空索引显示为成功，并提供“查看预览版下载”按钮。没有查询预览版本号，不声称当前预览为最新。启动不联网，不自动下载或运行安装程序。普通用户请使用 README 的固定下载页与手动更新步骤，不能仅为显示提示而把未签名候选标为稳定。
 
 ## 索引约定
 
 - `schema=1`，`product=luke-pdf-editor`，`platform=windows-x86_64`，`channel=stable` 固定标识本产品渠道。
-- `latest=null`：没有获准的稳定版；客户端不提示可下载、不回退到上游或旧版渠道。
+- `latest=null`：没有获准的稳定版；新版显示成功说明，允许用户显式打开固定鲁科预览下载页，不回退到上游或旧版渠道。
 - 非空 `latest` 只能在发布门禁通过后写入，须包含实际 `version`、`tag`、`release_url` 及 `assets`（每项实际 `name/url/sha256/size`）。不得填虚构 URL、占位哈希或开发包。
 - 下载来源限制为本仓库的 GitHub Releases；仅接受 HTTPS，不允许远端元数据指定任意主机、执行命令或修改安装目录。
 - 拒绝错误产品/平台/渠道/schema、未知结构字段、超过 64 KiB 的响应、非三段稳定版本、错误 tag、错误仓库或资源地址。仅接受一份版本名一致的 x64 MSI 元数据，大小不超过 512 MiB，SHA-256 必须是 64 位十六进制；旧版本不提示升级。
