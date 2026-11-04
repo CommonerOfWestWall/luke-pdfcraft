@@ -11,14 +11,14 @@
 | 最新正式 Release | https://api.github.com/repos/CommonerOfWestWall/luke-pdfcraft/releases/latest |
 | Windows x64 统一公开预览更新索引 | https://raw.githubusercontent.com/CommonerOfWestWall/luke-pdfcraft/main/updates/windows-x86_64.json |
 
-2026-10-30 起按用户决定统一预览渠道。[2.0.6](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.6) 仍为未签名公开预览，但进入现有客户端的更新索引。2.0.3–2.0.5 可通过“检查更新”发现它并点击“下载”；2.0.6 显示已是最新。旧 2.0.3/2.0.4 原包保留，本次不重打安装包、不新增版本号。JSON 的 `channel=stable` 仅为已部署客户端的兼容字段，不构成稳定认证；GitHub Release 保持 prerelease，未改成正式版或 latest。
+2026-10-30 起按用户决定统一预览渠道。2026-11-04 投放 [2.0.7](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.7)：仍为未签名公开预览，已公开的 2.0.6 可通过“检查更新”发现它并点击“下载”，2.0.7 显示已是最新。2.0.3/2.0.4 的旧检查更新界面无法自行发现新版，需从下载页手动获取；[2.0.6](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.6) 本身的索引投放记录见其发行说明。历史 2.0.3/2.0.4/2.0.6 原包与资产全部保留，不重打、不覆盖。JSON 的 `channel=stable` 仅为已部署客户端的兼容字段，不构成稳定认证；GitHub Release 保持 prerelease，未改成正式版或 latest。
 
 群发给用户可直接写：**打开鲁科 PDF 编辑器 → 检查更新 → 下载；保存并退出旧版后运行新版安装包。免安装用户完整解压 ZIP 到新文件夹。** 不启动联网、不自动下载或执行安装器，不回退上游。网络检查失败时可从固定 Releases 页自行下载，不能保证大陆所有网络可达。
 
 ## 索引约定
 
 - `schema=1`，`product=luke-pdf-editor`，`platform=windows-x86_64` 固定标识本产品；`channel=stable` 是旧解析器强制要求的兼容标识，不能改成 preview 导致旧版拒绝。`status=public_preview` 和 message 如实说明预览属性。
-- `latest=null` 仅表示暂未投放任何版本（旧客户端可能误报，不作为正常发布状态）；目前投放真实公开预览版 2.0.6。
+- `latest=null` 仅表示暂未投放任何版本（旧客户端可能误报，不作为正常发布状态）；目前投放真实公开预览版 2.0.7。
 - 非空 `latest` 只能在发布门禁通过后写入，须包含实际 `version`、`tag`、`release_url` 及 `assets`（每项实际 `name/url/sha256/size`）。不得填虚构 URL、占位哈希或开发包。
 - 下载来源限制为本仓库的 GitHub Releases；仅接受 HTTPS，不允许远端元数据指定任意主机、执行命令或修改安装目录。
 - 拒绝错误产品/平台/兼容渠道/schema、未知结构字段、超过 64 KiB 的响应、非三段数字版本、错误 tag、错误仓库或资源地址。仅接受一份版本名一致的 x64 MSI 元数据，大小不超过 512 MiB，SHA-256 必须是 64 位十六进制（索引中不带 sha256: 前缀）；同版或旧版不提示升级。
