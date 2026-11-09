@@ -5,15 +5,15 @@
   "platform": "windows-x86_64",
   "channel": "stable",
   "latest": {
-    "version": "2.0.7",
-    "tag": "v2.0.7",
-    "release_url": "https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.7",
+    "version": "2.0.8",
+    "tag": "v2.0.8",
+    "release_url": "https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.8",
     "assets": [
       {
-        "name": "Luke-PDF-Editor-2.0.7-x64.msi",
-        "size": 59211776,
-        "sha256": "31811ffc71d4e199fa88ffdf595755433e13d5f21e9d6274feb03b4dd725efab",
-        "url": "https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.7/Luke-PDF-Editor-2.0.7-x64.msi"
+        "name": "Luke-PDF-Editor-2.0.8-x64.msi",
+        "size": 59183104,
+        "sha256": "54744ffe21ccdacab37c45af1336f5eb614ebff84436e5c01d79ab90d54a8ffe",
+        "url": "https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.8/Luke-PDF-Editor-2.0.8-x64.msi"
       }
     ]
   },
