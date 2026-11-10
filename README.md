@@ -2,15 +2,16 @@
 
 基于 [PdfCraft](https://github.com/storytold/pdfcraft) 的中文、离线优先定制版，面向 Windows，并与鲁科 Look 的离线审读产物配合使用。
 
-## 下载 2.0.8 公开预览版
+## 下载 2.0.9 公开预览版
 
-**这是未签名预览版，不是稳定版。** 2.0.8 从上游 2026-11-09 新合并的修复中挑选了两项能逐字对应、不牵动框架的小修复：Acrobat 写出的 `/V 4` RC4 40/48-bit 短密钥文件，此前直接按短密钥推导对象密钥，读出的字符串/流是乱码且保存后读不回来，现在只对 `/V 4` + RC4 + 短于 16 字节的密钥补零到 16 字节再计算；很多结构树标题共用一个很大的 `/ActualText`/`/Alt`/`/T` 字符串时，此前每个标题各自完整解码一遍，现在整份文档共享一份解码预算，普通短标题不受影响。保留 2.0.7 的三项补丁（负数 trailer `/Size`、小比例 `Matrix::invert`、签名 OID 规范点分十进制）。鲁科仍是 v0.8 基础加有界补丁，**不是完整 v0.19**——上游的渲染、优化器、JBIG2、UI 框架与自动更新器均未迁入。**本轮未实测宿主升级**；多用户卸载、缩略图集成等仍有未关闭项目，不承诺所有机器兼容。Windows 可能显示未知发布者或信誉提示；不要关闭系统防护，无法确认来源时不要运行。请备份重要 PDF，先用副本试用。中文 OCR 精度不作保证。
+**这是未签名预览版，不是稳定版。** 2.0.9 把此前已经做完、但没随包发出的三项修复送到用户手上：检查更新改成 6 秒连接 / 20 秒总耗时两段超时，并读取系统代理（`HTTPS_PROXY` 等环境变量与 Windows `ProxyEnable`/`ProxyServer`），代理不通时回退直连；扫描件 OCR 的缩放比不再恒为 1.0（按上界 1600 px 归一化），300 dpi 扫描页的字行边界不再切错。另从上游取了两项能逐字对应的小修复：页面框必须正好四个可读数字，`/MediaBox [0 0 100 100 null]` 这类五条目畸形值不再被当尺寸用；随手拍矫正的四角排序改为按归一化坐标打分，透视缩短的横版纸不再被立起来转 90 度。保留 2.0.8 的两项（`/V 4` RC4 短密钥零扩展、标题文本共享解码预算）与 2.0.7 的三项（负数 trailer `/Size`、小比例 `Matrix::invert`、签名 OID 规范点分十进制），安装目录里的 `PREVIEW-README.txt` 也换成了版本中性文本。本版新增一个 Windows 专用依赖 `winreg` 用来读代理设置。鲁科仍是 v0.8 基础加有界补丁，**不是完整 v0.20**——上游的渲染、优化器、JBIG2、UI 框架与自动更新器均未迁入。**本轮未实测宿主升级**；多用户卸载、缩略图集成等仍有未关闭项目，不承诺所有机器兼容。Windows 可能显示未知发布者或信誉提示；不要关闭系统防护，无法确认来源时不要运行。请备份重要 PDF，先用副本试用。中文 OCR 精度不作保证。
 
-- [2.0.8 版本说明与全部下载](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.8)
-- [Windows x64 安装版 MSI](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.8/Luke-PDF-Editor-2.0.8-x64.msi)
-- [Windows x64 免安装版 ZIP](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.8/Luke-PDF-Editor-2.0.8-portable-x64.zip)
+- [2.0.9 版本说明与全部下载](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.9)
+- [Windows x64 安装版 MSI](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.9/Luke-PDF-Editor-2.0.9-x64.msi)
+- [Windows x64 免安装版 ZIP](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.9/Luke-PDF-Editor-2.0.9-portable-x64.zip)
 - [源码快照与构建说明](SOURCE.md)
-- [完整性校验文件](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.8/SHA256SUMS.txt)
+- [完整性校验文件](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/download/v2.0.9/SHA256SUMS.txt)
+- [保留的 2.0.8 历史版本](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.8)
 - [保留的 2.0.7 历史版本](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.7)
 - [保留的 2.0.6 历史版本](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.6)
 - [保留的 2.0.4 历史版本](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.4)
@@ -18,9 +19,9 @@
 
 安装版需要管理员权限，可选择父目录，程序使用其下独立的 `Luke PDF Editor 2` 文件夹。再次打开同一 MSI 可修复或卸载，也可从 Windows 已安装应用及开始菜单卸载。免安装版应完整解压到可写目录后运行 `pdfcraft.exe`，不要只复制一个 EXE。两种方式均不强改默认 PDF 应用。
 
-后续版本集中放在 Releases，无需逐人索取安装包。**已安装的 2.0.7：在软件中点“检查更新”→看到 2.0.8→点“下载”，即可进入本版下载页面。** 2.0.3/2.0.4 的旧检查更新界面无法自行发现新版，请从本页手动下载。2.0.8 会显示已是最新；将来通过同一渠道发布的新预览版也可被发现。程序不会自动下载安装。
+后续版本集中放在 Releases，无需逐人索取安装包。**已安装的 2.0.7 或 2.0.8：网络可达时，在软件中点“检查更新”可以看到 2.0.9 并点“下载”**（这两版的检查更新仍是 5 秒总超时、不读系统代理，失败时请从本页手动下载）。2.0.3/2.0.4 的旧检查更新界面无法自行发现新版，请从本页手动下载。2.0.9 显示已是最新；将来通过同一渠道发布的新预览版也可被发现。程序不会自动下载安装。
 
-**手动更新步骤**：软件内“检查更新”→“下载”→选择 2.0.8 MSI（安装用户）或 ZIP（免安装用户）→核对 `SHA256SUMS.txt`→备份重要文档、保存并退出旧版→运行 MSI 按向导更新，或将 ZIP 完整解压至新文件夹运行。不要把免安装 ZIP 覆盖安装目录，不要同时运行两个版本。旧版免安装配置不要删除；升级前保留原包，安装失败时停止操作并保留系统日志。软件内下载按钮打开本仓库的对应版本页面，由用户选择下载和安装，不会静默执行安装器。即使检查更新失败，离线 PDF 功能不受影响。
+**手动更新步骤**：软件内“检查更新”→“下载”→选择 2.0.9 MSI（安装用户）或 ZIP（免安装用户）→核对 `SHA256SUMS.txt`→备份重要文档、保存并退出旧版→运行 MSI 按向导更新，或将 ZIP 完整解压至新文件夹运行。不要把免安装 ZIP 覆盖安装目录，不要同时运行两个版本。旧版免安装配置不要删除；升级前保留原包，安装失败时停止操作并保留系统日志。软件内下载按钮打开本仓库的对应版本页面，由用户选择下载和安装，不会静默执行安装器。即使检查更新失败，离线 PDF 功能不受影响。
 
 - [鲁科版本下载页](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases)
 - [Windows x64 公开预览更新索引](https://raw.githubusercontent.com/CommonerOfWestWall/luke-pdfcraft/main/updates/windows-x86_64.json)
