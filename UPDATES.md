@@ -11,14 +11,14 @@
 | 最新正式 Release | https://api.github.com/repos/CommonerOfWestWall/luke-pdfcraft/releases/latest |
 | Windows x64 统一公开预览更新索引 | https://raw.githubusercontent.com/CommonerOfWestWall/luke-pdfcraft/main/updates/windows-x86_64.json |
 
-2026-10-30 起按用户决定统一预览渠道。2026-11-10 投放 [2.0.9](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.9)：仍为未签名公开预览，已安装的 2.0.7、2.0.8（及更早已接入索引且能读懂索引的客户端）可通过“检查更新”发现它并点击“下载”，2.0.9 显示已是最新。2.0.3/2.0.4 的旧检查更新界面无法自行发现新版，需从下载页手动获取。上一版 [2.0.8](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.8) 于 2026-11-09 投放，当时的记录与此处规则相同。历史 2.0.3/2.0.4/2.0.6/2.0.7/2.0.8 原包与资产全部保留，不重打、不覆盖。JSON 的 `channel=stable` 仅为已部署客户端的兼容字段，不构成稳定认证；GitHub Release 保持 prerelease，未改成正式版或 latest。**客户端网络行为分界**：2.0.9 起改为 6 秒连接 / 20 秒总耗时两段超时并读取系统代理（`HTTPS_PROXY` 等环境变量与 Windows `ProxyEnable`/`ProxyServer`，代理不通回退直连，SOCKS 与 PAC 不支持）；2.0.7 与 2.0.8 客户端仍是 5 秒总超时且不读系统代理，普通网络可能失败。这不代表离线 PDF 功能受影响，也不构成「大陆普通网络已通过」的结论。
+2026-10-30 起按用户决定统一预览渠道。2026-11-17 投放 [2.1.1](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.1.1)：仍为未签名公开预览，把简体中文界面补齐（缺译报告对 zh-hans `0 missing`），基座抬到上游 `v0.21.1`。已安装的 2.0.9 及之后的版本可通过“检查更新”发现它并点击“下载”，2.1.1 显示已是最新；2.0.7、2.0.8 仍可被发现但受各自的 5 秒总超时限制，2.0.3/2.0.4 的旧检查更新界面无法自行发现新版，需从下载页手动获取。上一版 [2.1.0](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.1.0) 于 2026-11-12 投放，[2.0.9](https://github.com/CommonerOfWestWall/luke-pdfcraft/releases/tag/v2.0.9) 于 2026-11-10 投放，当时的记录与此处规则相同。历史 2.0.3/2.0.4/2.0.6/2.0.7/2.0.8/2.0.9/2.1.0 原包与资产全部保留，不重打、不覆盖。JSON 的 `channel=stable` 仅为已部署客户端的兼容字段，不构成稳定认证；GitHub Release 保持 prerelease，未改成正式版或 latest。**客户端网络行为分界**：2.0.9 起改为 6 秒连接 / 20 秒总耗时两段超时并读取系统代理（`HTTPS_PROXY` 等环境变量与 Windows `ProxyEnable`/`ProxyServer`，代理不通回退直连，SOCKS 与 PAC 不支持）；2.0.7 与 2.0.8 客户端仍是 5 秒总超时且不读系统代理，普通网络可能失败。这不代表离线 PDF 功能受影响，也不构成「大陆普通网络已通过」的结论。
 
 群发给用户可直接写：**打开鲁科 PDF 编辑器 → 检查更新 → 下载；保存并退出旧版后运行新版安装包。免安装用户完整解压 ZIP 到新文件夹。** 不启动联网、不自动下载或执行安装器，不回退上游。网络检查失败时可从固定 Releases 页自行下载，不能保证大陆所有网络可达。
 
 ## 索引约定
 
 - `schema=1`，`product=luke-pdf-editor`，`platform=windows-x86_64` 固定标识本产品；`channel=stable` 是旧解析器强制要求的兼容标识，不能改成 preview 导致旧版拒绝。`status=public_preview` 和 message 如实说明预览属性。
-- `latest=null` 仅表示暂未投放任何版本（旧客户端可能误报，不作为正常发布状态）；目前投放真实公开预览版 2.0.9。
+- `latest=null` 仅表示暂未投放任何版本（旧客户端可能误报，不作为正常发布状态）；目前投放真实公开预览版 2.1.1。
 - 非空 `latest` 只能在发布门禁通过后写入，须包含实际 `version`、`tag`、`release_url` 及 `assets`（每项实际 `name/url/sha256/size`）。不得填虚构 URL、占位哈希或开发包。
 - 下载来源限制为本仓库的 GitHub Releases；仅接受 HTTPS，不允许远端元数据指定任意主机、执行命令或修改安装目录。
 - 拒绝错误产品/平台/兼容渠道/schema、未知结构字段、超过 64 KiB 的响应、非三段数字版本、错误 tag、错误仓库或资源地址。仅接受一份版本名一致的 x64 MSI 元数据，大小不超过 512 MiB，SHA-256 必须是 64 位十六进制（索引中不带 sha256: 前缀）；同版或旧版不提示升级。
