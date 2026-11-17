@@ -1,5 +1,16 @@
 # 鲁科 PDF 编辑器发行记录
 
+## 2.1.1 — 2026-11-17 — 公开预览
+
+- **中文界面补彻底**：上游 zh-hans 语料有两个不同的问题——850 条界面字符串压根没有中文行（没行就显示英文），另有 34 条把英文原文直接抄成了译文（`Search a folder…`、`Secured`、`Load to edit`、`Stop`、`Comment`、`Warning`、`Subscript`、`Superscript` 等）。本版分两套机制处理：新增 `crates/ui-egui/src/i18n/luke.tsv` 的 850 行追加层（上游没有的键），和新建 `luke-override.tsv` 的更正层（34 行 = 8 条删行 + 26 条重译）。更正层是必需的：追加在后的行会被上游同键行先命中、成为死行，所以「上游有行但译错」这类只能替换。删掉的 8 条回落到 `common.tsv` 已有中文，逐条核对为 注释/文件夹/像素/快捷键/停止/下标/上标/警告。两份表都在构建时叠加到生成目录，不改 craft-i18n 上游文件字节。
+- **覆盖报告**：zh-hans 从「缺 850 / 82.3%」变成 **`0 missing` / 20 kept in English**（20 条是 CMYK、PDF/A、PIN、Tesseract、Ctrl/Shift 一类不该译的记号）。抬版带出的 1 条新串（预检「Some content could not be read for device colour」，随上游 #5926 进入）已补译；另清掉 `Next`/`Previous` 两条被上游同名行盖住的死行，生成目录的重复定义警告从 14 条降到 12 条。
+- **构建期硬检查**：`build.ps1` 原本从不设 `CRAFT_I18N_DIR`、也不设 `CRAFT_I18N_REQUIRED`，换干净机器构建会静默打出纯英文界面且任何门禁都不报。本版补成缺目录直接报错，并同时置 `CRAFT_FONTS_REQUIRED` / `PDFCRAFT_REQUIRE_WINRES` / `CRAFT_I18N_REQUIRED`。
+- **基座 v0.21.0 → v0.21.1**：23 个提交，60 文件 / +2191 −304。用户可感知：保存前先把所有密码字段找出来再清洗（#5864，此前可能漏掉某字段把值留在文件里）；描边路径涂黑按描边实际画到的框移除（#5876）；删隐藏图层按阅读器认定的默认状态读（#5867）；只读单选按钮不再被 `set_value` 拨动（#6038）；XFA 数据节点名字/路径字节设上限（#6032）；检查文本计入共享预算（#6015）；签名共享值判定与 DSS 按对象号去重（#6041/#6013）；JS 数组文本、月份解析、名字注册与列表运算设上限（#5883）；优化器算子记账与共享资源只走一遍（#6095/#5956）；预检跟随每条 `/Next` 动作（#5926）；墨迹点计数与橡皮擦采样封顶（#6001）。上游另修 Flatpak 自更新（#7020），Windows 用不到。
+- **合并期修正**：抬版时整份取用上游 `Cargo.lock`，丢掉两个 Luke 专有包（`luke-thumbnail-provider`、`pdfcraft-luke-review`）——二者都是 workspace 成员，锁文件缺它们时 `cargo build --locked` 会直接失败，而抬版后第一次构建未带 `--locked`，cargo 悄悄补齐，问题当时没暴露。已提交补齐后的锁文件，`--locked` 全量门禁通过。
+- **门禁顺手修好两处陈旧红**：`pdfcraft-automation` 的 MCP 身份测试仍断言 `serverInfo.version == "2.0"`（2.1.0 起就陈旧）；`xtask assets` 因两份 i18n 表未登记归因（`luke.tsv` 哈希过期、`luke-override.tsv` 无条目）而红。均已修，归因清单现为 257 个仓库资产。
+- **版本位点**：`FILE_VERSION` 2.1.0.0 → 2.1.1.0、`PRODUCT_BUILD_VERSION` 2.1.0 → 2.1.1、MSI `Product`/`UpgradeVersion` 2.1.1、更新检查 User-Agent 2.1.1；`test-contract.ps1` 的 6 处版本硬编码收成一个变量。产品显示版本仍是 2.1，安装目录仍是 `Luke PDF Editor 2`，MajorUpgrade 检测低于 2.1.1 的旧版（含 2.1.0）。
+- 全量门禁 **144 个测试程序 / 10,144 项通过 / 0 失败 / 34 忽略**，退出 0；`fmt --check` 与 `xtask assets` 退出 0。`control::transport` 的本地回环 socket 测试在本机随机红一条（4 条不同用例轮换出现，单跑时而全绿），该模块与上游两版逐字节一致、非本版回归，如实记录、未放宽测试。
+
 ## 2.1.0 — 2026-11-12 — 公开预览
 
 - **换基座**：产品树从官方 PdfCraft `v0.20.0` 抬到 `v0.21.0`（上游 1,063 个提交）。2.0.x 一直是「v0.8 基础 + 有界 backport」，本版起不再逐条移植，上游该版的修复与功能随基座进入。抬后相对上游的分叉面为 300 个文件（118 改 / 169 增 / 13 删）。
